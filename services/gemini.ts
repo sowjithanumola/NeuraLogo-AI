@@ -53,9 +53,9 @@ export const generateLogo = async (name: string, concept: string, answers: Recor
     },
   });
 
-  const candidates = response.candidates;
-  if (candidates && candidates.length > 0) {
-    for (const part of candidates[0].content.parts) {
+  const parts = response.candidates?.[0]?.content?.parts;
+  if (parts) {
+    for (const part of parts) {
       if (part.inlineData) {
         return `data:image/png;base64,${part.inlineData.data}`;
       }
@@ -79,9 +79,9 @@ export const editLogo = async (prompt: string, base64Image: string): Promise<str
     },
   });
 
-  const candidates = response.candidates;
-  if (candidates && candidates.length > 0) {
-    for (const part of candidates[0].content.parts) {
+  const parts = response.candidates?.[0]?.content?.parts;
+  if (parts) {
+    for (const part of parts) {
       if (part.inlineData) {
         return `data:image/png;base64,${part.inlineData.data}`;
       }
